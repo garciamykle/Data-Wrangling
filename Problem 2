@@ -4,4 +4,6 @@ data = {'Box':['Box1','Box1','Box1','Box2','Box2','Box2'], 'Dimension':['Length'
 
 messy = pd.DataFrame(data, columns = ['Box','Dimension','Value'])
 tidy = messy.pivot_table(index = ['Box'], columns = 'Dimension', values = 'Value').reset_index()
+volume = tidy.assign(Volume = tidy.Length*tidy.Width*tidy.Height)
 print(tidy)
+print(volume)
