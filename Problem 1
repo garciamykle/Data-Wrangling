@@ -17,4 +17,11 @@ m2 = pd.merge(m,bgeas,how = 'right', on= 'Student')
 
 webearbears = pd.merge(m2,besat,how = 'right', on = 'Student')
 
-print(webearbears)
+#longformat
+lfwbb = pd.melt(webearbears, id_vars = "Student", value_vars = ["Math", "Electronics", "GEAS", "ESAT"])
+lfwbb2 = lfwbb.rename(columns = {"variable": "Subject", "value": "Grades"})
+lfwbb3 = lfwbb2.sort_values("Student").reset_index().drop(columns = ["index"])
+
+print('\n', webearbears)
+print('\n')
+print('long format: \n', lfwbb3)
